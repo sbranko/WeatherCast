@@ -65,15 +65,17 @@ public class Menu1 extends Fragment {
                 if (response.isSuccessful()) {
                     mWeatherModelData = response.body();
 
-                    for (int i = 0; i < mWeatherModelData.getList().size(); i++) {
-                        String icon = mWeatherModelData.getList().get(i).getWeather().get(0).getIcon();
-                        CityWeatherModel model1 = new CityWeatherModel(
-                                mWeatherModelData.getList().get(i).getWeather().get(0).getDescription(),
-                                mWeatherModelData.getList().get(i).getName(),
-                                "http://openweathermap.org/img/w/" + icon + ".png"
-                                , mWeatherModelData.getList().get(i).getMain().getTemp()
-                                ,true);
-                        listOfCities.add(model1);
+                    if (mWeatherModelData != null) {
+                        for (int i = 0; i < mWeatherModelData.getList().size(); i++) {
+                            String icon = mWeatherModelData.getList().get(i).getWeather().get(0).getIcon();
+                            CityWeatherModel model1 = new CityWeatherModel(
+                                    mWeatherModelData.getList().get(i).getWeather().get(0).getDescription(),
+                                    mWeatherModelData.getList().get(i).getName(),
+                                    "http://openweathermap.org/img/w/" + icon + ".png"
+                                    , mWeatherModelData.getList().get(i).getMain().getTemp()
+                                    , true);
+                            listOfCities.add(model1);
+                        }
                     }
 
                     MyRecyclerAdapter recyclerAdapter = new MyRecyclerAdapter(getActivity(), listOfCities);

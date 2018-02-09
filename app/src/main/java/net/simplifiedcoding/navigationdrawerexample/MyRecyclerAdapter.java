@@ -2,12 +2,6 @@ package net.simplifiedcoding.navigationdrawerexample;
 
 import android.content.Context;
 import android.content.Intent;
-
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.support.design.widget.NavigationView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +13,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import java.io.ByteArrayOutputStream;
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -30,20 +22,19 @@ import java.util.List;
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder> {
 
 
-    public static Context getmContext() {
-        return mContext;
-    }
-
-    private static Context mContext;
+    private Context mContext;
     private List<CityWeatherModel> cityWeatherModelList;
     private RadioButton lastChecked;
     private int lastCheckedPosition = 0;
     private int lastSelectedPosition = 0;
 
-
-    public MyRecyclerAdapter(Context context, List<CityWeatherModel> cityWeatherModelList) {
+    MyRecyclerAdapter(Context context, List<CityWeatherModel> cityWeatherModelList) {
         this.mContext = context;
         this.cityWeatherModelList = cityWeatherModelList;
+    }
+
+    public Context getmContext() {
+        return mContext;
     }
 
     @Override
@@ -120,7 +111,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
         private TextView mTvCityTemp;
         private RadioButton mRadioButton;
 
-        public MyViewHolder(View itemView) {
+        MyViewHolder(View itemView) {
             super(itemView);
             mWeatherIcon = (ImageView) itemView.findViewById(R.id.iv_weather_icon);
             mCityName = (TextView) itemView.findViewById(R.id.tv_city_name);

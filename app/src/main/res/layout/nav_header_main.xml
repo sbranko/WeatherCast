@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimaryDark"
     android:gravity="bottom"
     android:orientation="vertical"
@@ -21,23 +21,23 @@
         android:layout_marginStart="6dp"
         android:layout_marginTop="6dp"
         android:contentDescription="@string/content_description"
-        android:text="picture"
+        android:text="@string/picture"
         app:srcCompat="@mipmap/ic_launcher"/>
 
     <TextView
+        android:id="@+id/navText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Navigation Drawer Example"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:id="@+id/navText"/>
+        android:text="@string/navigation_drawer_example"
+        android:textAppearance="?android:textAppearanceLarge" />
 
     <TextView
+        android:id="@+id/navTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="Navigation Drawer Example"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:id="@+id/navTemp"/>
+        android:text="@string/navigation_drawer_example"
+        android:textAppearance="?android:textAppearanceLarge" />
 
 </LinearLayout>

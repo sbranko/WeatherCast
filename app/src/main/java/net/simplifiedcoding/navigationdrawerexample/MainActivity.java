@@ -1,12 +1,9 @@
 package net.simplifiedcoding.navigationdrawerexample;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -18,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,9 +23,9 @@ import com.bumptech.glide.Glide;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static long UPDATE_EVERY = 1000;
     private Handler handler;
     private UpdateTimer updateTimer;
-    private static long UPDATE_EVERY = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,7 +154,7 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         //calling the method displayselectedscreen and passing the id of selected menu
         displaySelectedScreen(item.getItemId());
@@ -178,9 +174,9 @@ public class MainActivity extends AppCompatActivity
 
 
         MyBroadcastReceiver mybr = new MyBroadcastReceiver();
-        CityWeatherModel cityWeatherModel = mybr.getCityWeatherMode();
+        CityWeatherModel cityWeatherModel = MyBroadcastReceiver.getCityWeatherMode();
         navText.setText(cityWeatherModel.getCityName());
-        navTemp.setText(String.valueOf(Math.round(cityWeatherModel.getCurrentTemp()-273.15))+" °C");
+        navTemp.setText(new StringBuilder().append(String.valueOf(Math.round(cityWeatherModel.getCurrentTemp() - 273.15))).append(" °C").toString());
 
         Glide.with(getApplicationContext())
                 .load(cityWeatherModel.getWeatherIcon())
@@ -194,7 +190,7 @@ public class MainActivity extends AppCompatActivity
 
         Activity activity;
 
-        public UpdateTimer(Activity activity) {
+        UpdateTimer(Activity activity) {
             this.activity = activity;
         }
 
